@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yippie</title>
+</head>
+<style>
+    :root {
+        --scale: 3em;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .jeff {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        max-width: 80%;
+        margin: auto;
+        flex-wrap: wrap;
+    }
+
+    .jeff > button {
+        flex: 0 0 25%;
+        aspect-ratio: 1;
+
+        /*height: var(--scale);*/
+        /*width: var(--scale);*/
+        margin-right: calc( var(--scale) / 2 );
+        margin-bottom: calc( var(--scale) / 2 );
+    }
+
+    /*img {
+        cursor: pointer;
+        height: var(--scale);
+        width: var(--scale);
+        margin-right: calc( var(--scale) / 2 );
+        margin-bottom: calc( var(--scale) / 2 );
+        font-size: 16px;
+        text-align: center;
+        appearance: none;
+        background-color: #FAFBFC;
+        border: 1px solid rgba(27, 31, 35, 0.15);
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+        box-sizing: border-box;
+        color: #24292E;
+        font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
+        font-weight: 700;
+        padding: 0.5em 1em;
+        position: relative;
+        transition: background-color 0.5s cubic-bezier(0.3, 0, 0.5, 1);
+    }*/
+
+    button:hover {
+        text-transform: uppercase;
+    }
+
+
+    .button-19:hover {
+        filter: brightness(1.1);
+        -webkit-filter: brightness(1.1);
+    }
+
+    #reset {
+        height: 50px !important;
+    }
+
+    /* Stolen button style */
+    .button-19 {
+        appearance: button;
+        background-color: #1899D6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 4px;
+        box-sizing: border-box;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: inline-block;
+        font-family: din-round, sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: .8px;
+        line-height: 20px;
+        margin: 0;
+        outline: none;
+        overflow: visible;
+        padding: 13px 16px;
+        text-align: center;
+        text-transform: uppercase;
+        touch-action: manipulation;
+        transform: translateZ(0);
+        transition: filter .2s;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .button-19:after {
+        background-clip: padding-box;
+        background-color: #1CB0F6;
+        border: solid transparent;
+        border-radius: 16px;
+        border-width: 0 0 10px;
+        bottom: -6px;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+</style>
+<script>
+    const color_chart = [
+        {color: 'gray', icon: '❔'},
+        {color: 'green', icon: '🌵'},
+        {color: 'cyan', icon: '🧲'},
+        {color: 'orange', icon: '✡️'},
+        {color: 'purple', icon: '⚒️'},
+        {color: 'red', icon: '👢'},
+    ]
+    const width = 4;
+    const height = 3;
+
+    const buttons = document.querySelectorAll("button[data-clicks]");
+
+    function create
+
+    // Step 3.
+    // Util function to set style and text
+    const setStyleAndText = (button) => {
+        const clicksTotal = Number(button.dataset.clicks);
+        console.log(clicksTotal);
+        const hmm = mapColors[clicksTotal];
+        button.style.backgroundColor = hmm[0];
+        button.textContent = hmm[1];
+
+        // Reset clicks variable to go back through the colors
+        if (clicksTotal >= 5) {
+            button.dataset.clicks = 0;
+        }
+    };
+
+    // Step 4.
+    // Prepare  callback function to fire on button click
+    function changeColourOnClick() {
+        // Coerce to Number from string and increment dataset property clicks
+        // Coerce back to string (the browser would do this step for you but we know what we are doing)
+        // "** this **" here will be the button we've applied the event listener to
+        let totalClicks = Number(this.dataset.clicks);
+        totalClicks += 1;
+        if (totalClicks > 5) {
+            totalClicks = 0;
+        }
+        this.dataset.clicks = String(totalClicks);
+
+        // Use util function
+        setStyleAndText(this);
+    }
+
+    // Step 5. -- glue everything together
+    // iterate all buttons that have the data-clicks attribute and add listener
+    buttons.forEach((button) => {
+        button.addEventListener('click', changeColourOnClick);
+    });
+
+
+    function resetAll() {
+        buttons.forEach((button, index) => {
+            button.dataset.clicks = 0;
+            setStyleAndText(button);
+        });
+    }
+
+    // Step 6. - Optional
+    // Reset functionality
+    const resetButton = document.getElementById('reset');
+    resetButton.addEventListener('click', () => {
+        resetAll();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        resetAll();
+    });
+</script>
+
+
+<body>
+<div id="jeff-root"></div>
+<div class='jeff'>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+    <button data-clicks="0"> ❔ </button>
+</div>
+
+<div style="margin: 20px auto; width: 200px;">
+    <button class="button-19" id='reset'> Reset</button>
+</div>
+</body>
+</html>
