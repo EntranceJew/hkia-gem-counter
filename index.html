@@ -2,213 +2,210 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Yippie</title>
-</head>
-<style>
-    :root {
-        --scale: 3em;
-    }
+    <title>Hello Kitty Island Adventure: Gem Tracker</title>
+    <style>
+        :root {
+            --width: 4;
+            --height: 3;
 
-    * {
-        box-sizing: border-box;
-    }
+            --margin: 1rem;
 
-    .jeff {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        max-width: 80%;
-        margin: auto;
-        flex-wrap: wrap;
-    }
+            --box-border-size: 1rem;
+            --box-bevel-size: 1rem;
 
-    .jeff > button {
-        flex: 0 0 25%;
-        aspect-ratio: 1;
+            --box-border-width: 1rem;
+            --box-bevel-vis: 0.25;
 
-        /*height: var(--scale);*/
-        /*width: var(--scale);*/
-        margin-right: calc( var(--scale) / 2 );
-        margin-bottom: calc( var(--scale) / 2 );
-    }
+            --shadow-color: #000;
+            --shadow-width: 0.05rem;
 
-    /*img {
-        cursor: pointer;
-        height: var(--scale);
-        width: var(--scale);
-        margin-right: calc( var(--scale) / 2 );
-        margin-bottom: calc( var(--scale) / 2 );
-        font-size: 16px;
-        text-align: center;
-        appearance: none;
-        background-color: #FAFBFC;
-        border: 1px solid rgba(27, 31, 35, 0.15);
-        border-radius: 6px;
-        box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-        box-sizing: border-box;
-        color: #24292E;
-        font-family: -apple-system, system-ui, "Segoe UI", sans-serif;
-        font-weight: 700;
-        padding: 0.5em 1em;
-        position: relative;
-        transition: background-color 0.5s cubic-bezier(0.3, 0, 0.5, 1);
-    }*/
-
-    button:hover {
-        text-transform: uppercase;
-    }
-
-
-    .button-19:hover {
-        filter: brightness(1.1);
-        -webkit-filter: brightness(1.1);
-    }
-
-    #reset {
-        height: 50px !important;
-    }
-
-    /* Stolen button style */
-    .button-19 {
-        appearance: button;
-        background-color: #1899D6;
-        border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 4px;
-        box-sizing: border-box;
-        color: #FFFFFF;
-        cursor: pointer;
-        display: inline-block;
-        font-family: din-round, sans-serif;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: .8px;
-        line-height: 20px;
-        margin: 0;
-        outline: none;
-        overflow: visible;
-        padding: 13px 16px;
-        text-align: center;
-        text-transform: uppercase;
-        touch-action: manipulation;
-        transform: translateZ(0);
-        transition: filter .2s;
-        user-select: none;
-        -webkit-user-select: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        width: 100%;
-    }
-
-    .button-19:after {
-        background-clip: padding-box;
-        background-color: #1CB0F6;
-        border: solid transparent;
-        border-radius: 16px;
-        border-width: 0 0 10px;
-        bottom: -6px;
-        content: "";
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -1;
-    }
-</style>
-<script>
-    const color_chart = [
-        {color: 'gray', icon: '❔'},
-        {color: 'green', icon: '🌵'},
-        {color: 'cyan', icon: '🧲'},
-        {color: 'orange', icon: '✡️'},
-        {color: 'purple', icon: '⚒️'},
-        {color: 'red', icon: '👢'},
-    ]
-    const width = 4;
-    const height = 3;
-
-    const buttons = document.querySelectorAll("button[data-clicks]");
-
-    function create
-
-    // Step 3.
-    // Util function to set style and text
-    const setStyleAndText = (button) => {
-        const clicksTotal = Number(button.dataset.clicks);
-        console.log(clicksTotal);
-        const hmm = mapColors[clicksTotal];
-        button.style.backgroundColor = hmm[0];
-        button.textContent = hmm[1];
-
-        // Reset clicks variable to go back through the colors
-        if (clicksTotal >= 5) {
-            button.dataset.clicks = 0;
+            --stripe1: peachpuff;
+            --stripe2: mintcream;
+            --stripe-width: 4em;
         }
-    };
 
-    // Step 4.
-    // Prepare  callback function to fire on button click
-    function changeColourOnClick() {
-        // Coerce to Number from string and increment dataset property clicks
-        // Coerce back to string (the browser would do this step for you but we know what we are doing)
-        // "** this **" here will be the button we've applied the event listener to
-        let totalClicks = Number(this.dataset.clicks);
-        totalClicks += 1;
-        if (totalClicks > 5) {
-            totalClicks = 0;
+        html, head, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
-        this.dataset.clicks = String(totalClicks);
 
-        // Use util function
-        setStyleAndText(this);
-    }
+        body {
+            background-color: peachpuff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23f5fffa' fill-opacity='0.7'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 16em;
+            animation:120s scroll infinite linear;
+        }
 
-    // Step 5. -- glue everything together
-    // iterate all buttons that have the data-clicks attribute and add listener
-    buttons.forEach((button) => {
-        button.addEventListener('click', changeColourOnClick);
-    });
+        @keyframes scroll{
+            100%{
+                background-position:-100vw -100vh;
+            }
+        }
+
+        #gem-button-root {
+            width: 100vw;
+            height: 85vh;
+            justify-content: center;
+            margin: auto;
+            display: grid;
+
+            grid-template-columns: repeat(var(--width), 1fr);
+            grid-template-rows: repeat(var(--height), 1fr);
+            grid-column-gap: var(--margin);
+            grid-row-gap: var(--margin);
+        }
+
+        /*noinspection CssUnusedSymbol*/
+        .gem-button {
+            cursor: pointer;
+            vertical-align: middle;
+            white-space: nowrap;
+            -moz-appearance: button;
+            text-align: center;
+            text-transform: uppercase;
+            touch-action: manipulation;
+            user-select: none;
+
+            border: var(--box-border-size) solid rgba(27, 31, 35, 0.15);
+            border-radius: var(--box-bevel-size);
+
+            font-size: xxx-large;
+            text-shadow: calc(-1 * var(--shadow-width)) calc(-1 * var(--shadow-width)) 0 var(--shadow-color),
+            var(--shadow-width) calc(-1 * var(--shadow-width)) 0 var(--shadow-color),
+            calc(-1 * var(--shadow-width)) var(--shadow-width) 0 var(--shadow-color),
+            var(--shadow-width) var(--shadow-width) 0 var(--shadow-color);
+
+            transition: background-color 0.3s cubic-bezier(0.3, 0, 0.5, 1);
+
+            &:hover {
+                filter: brightness(1.1);
+                -webkit-filter: brightness(1.1);
+            }
+        }
+
+        #reset {
+            margin: var(--margin);
+            height: calc(100% - var(--margin) - var(--margin));
+            width: calc(100% - var(--margin) - var(--margin));
+
+            color: #FFFFFF;
+            background-color: gray;
+            font-size: 2rem;
+            font-family: din-round, sans-serif;
+            font-weight: 700;
+
+            &:hover {
+                background-color: red;
+            }
+        }
+
+        #reset-container {
+            width: 100vw;
+            height: 15vh;
+        }
+    </style>
+    <script>
+        const width = 4;
+        const height = 3;
+
+        const color_chart = [
+            {max: Infinity, color: 'gray', icon: '❔', name: 'unknown'},
+            {max: 4, color: 'darkgreen', icon: '🌵', name: 'green cactus'},
+            {max: 2, color: 'darkcyan', icon: '🧲', name: 'cyan horse-shoe'},
+            {max: 2, color: 'darkorange', icon: '️⭐', name: 'orange sheriff star'},
+            {max: 2, color: 'rebeccapurple', icon: '⚒️', name: 'purple hammer and chisel'},
+            {max: 2, color: 'darkred', icon: '👢', name: 'red cowboy boot'},
+        ];
+
+        const buttons = [];
+
+        const totals = [];
+
+        const recomputeTotals = () => {
+            for (let i = 0; i < color_chart.length; i++) {
+                totals[i] = 0;
+            }
+
+            buttons.forEach(button => {
+                let clicks = Number(button.dataset.clicks);
+                totals[clicks] = totals[clicks] + 1;
+            });
+        }
+
+        const updateButtonAppearance = (button) => {
+            const clicksTotal = Number(button.dataset.clicks);
+
+            const hmm = color_chart[clicksTotal];
+            button.style.backgroundColor = hmm.color;
+            button.textContent = hmm.icon;
+        };
+
+        const clickOnButton = function (button) {
+            let totalClicks = Number(button.dataset.clicks);
+            do {
+                totalClicks += 1;
+            } while (totalClicks < color_chart.length && totals[totalClicks] + 1 > color_chart[totalClicks].max);
+
+            if (totalClicks >= color_chart.length) {
+                totalClicks = 0;
+            }
 
 
-    function resetAll() {
-        buttons.forEach((button, index) => {
-            button.dataset.clicks = 0;
-            setStyleAndText(button);
+            button.dataset.clicks = String(totalClicks);
+            localStorage.setItem(button.getAttribute('id'), button.dataset.clicks);
+            recomputeTotals();
+        };
+
+        const handleButtonClick = function () {
+            clickOnButton(this);
+            updateButtonAppearance(this);
+        };
+
+        const createElements = () => {
+            let root = document.getElementById('gem-button-root');
+
+            for (let x = 0; x < width; x++) {
+                for (let y = 0; y < height; y++) {
+                    const elm = document.createElement('button');
+                    elm.setAttribute('id', `${x}_${y}`);
+                    elm.setAttribute('class', 'gem-button');
+                    elm.dataset.clicks = localStorage.getItem(`${x}_${y}`) || 0;
+                    elm.addEventListener('click', handleButtonClick);
+
+                    updateButtonAppearance(elm);
+                    root.appendChild(elm);
+                    buttons.push(elm);
+                }
+            }
+
+            recomputeTotals();
+        };
+
+        const resetAll = () => {
+            buttons.forEach((button) => {
+                button.dataset.clicks = "-1";
+                clickOnButton(button);
+                updateButtonAppearance(button);
+            });
+
+            recomputeTotals();
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            createElements();
+
+            document.getElementById('reset').addEventListener('click', resetAll);
         });
-    }
-
-    // Step 6. - Optional
-    // Reset functionality
-    const resetButton = document.getElementById('reset');
-    resetButton.addEventListener('click', () => {
-        resetAll();
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        resetAll();
-    });
-</script>
-
+    </script>
+</head>
 
 <body>
-<div id="jeff-root"></div>
-<div class='jeff'>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-    <button data-clicks="0"> ❔ </button>
-</div>
+<div id="gem-button-root"></div>
 
-<div style="margin: 20px auto; width: 200px;">
-    <button class="button-19" id='reset'> Reset</button>
+<div id="reset-container">
+    <button class="gem-button" id="reset">Reset</button>
 </div>
 </body>
 </html>
